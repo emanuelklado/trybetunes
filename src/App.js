@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import { Fragment } from 'react/cjs/react.production.min';
 import Album from './pages/Album';
 import Favorites from './pages/Favorites';
