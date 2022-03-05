@@ -37,7 +37,6 @@ class Header extends Component {
             <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
           </nav>
           <p data-testid="header-user-name">
-            {' '}
             {`Bem vindo ${userName}`}
           </p>
         </header>
