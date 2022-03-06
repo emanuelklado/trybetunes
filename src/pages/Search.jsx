@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from './components/Header';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Loading from './Loading';
 
 class Search extends Component {
   constructor() {
@@ -7,19 +10,57 @@ class Search extends Component {
     this.state = {
       isDisabled: true,
       searchName: '',
+      loading: false,
+      data: [],
+      showMsg: '',
+
     };
   }
 
   onInputSearch = ({ target: { name, value, type, checked } }) => {
     const valor = type === 'checkbox' ? checked : value;
-    this.setState({
-      [name]: valor,
-    }, () => this.validation());
-  }
+    this.setState(
+      {
+        [name]: valor,
+      },
+      () => this.validation(),
+    );
+  };
 
-  handleClickSearch = () => {
-  // pesquisa via API
+  handleClickSearch = async (event) => {
+    event.preventDefault();
+    const { searchName } = this.state;
+    this.setState({
+      loading: true,
+    });
+    const result = await searchAlbumsAPI(searchName);
+    this.setState({
+      loading: false,
+      data: result,
+    }, () => this.showMensenger());
+  };
+
+  showMensenger = () => {
+    const { data, searchName } = this.state;
+    if (data.length <= 0) {
+      this.setState({
+        showMsg: 'Nenhum álbum foi encontrado',
+      });
+    } else {
+      this.setState({
+        showMsg: `Resultado de álbuns de: ${searchName}`,
+        searchName: '',
+      });
+    }
   }
+  // // rever essa função.
+  // showItems = () => {
+  //   const { data } = this.state;
+  //   console.log('chequei no map');
+  //   // data.map((item) => (
+
+  //   // ));
+  // }
 
   validation = () => {
     const MAX = 2;
@@ -33,35 +74,52 @@ class Search extends Component {
         isDisabled: true,
       });
     }
-  }
+  };
 
   render() {
-    const { searchName, isDisabled } = this.state;
+    const { data, searchName, isDisabled, loading, showMsg } = this.state;
     return (
       <>
         <Header />
-        <div data-testid="page-search">
-          <p> Search </p>
-          <form>
-            <input
-              id="searchName"
-              value={ searchName }
-              name="searchName"
-              type="text"
-              data-testid="search-artist-input"
-              placeholder="Album ou Artista"
-              onChange={ this.onInputSearch }
-            />
-            <button
-              onClick={ this.handleClickSearch }
-              disabled={ isDisabled }
-              data-testid="search-artist-button"
-              type="submit"
-            >
-              Pesquisar
-            </button>
-          </form>
-        </div>
+        {loading ? (
+          <Loading propLoading={ loading } />
+        ) : (
+          <div data-testid="page-search">
+            <p> Search </p>
+            <form>
+              <input
+                id="searchName"
+                value={ searchName }
+                name="searchName"
+                type="text"
+                data-testid="search-artist-input"
+                placeholder="Album ou Artista"
+                onChange={ this.onInputSearch }
+              />
+              <button
+                onClick={ (event) => this.handleClickSearch(event) }
+                disabled={ isDisabled }
+                data-testid="search-artist-button"
+                type="submit"
+              >
+                Pesquisar
+              </button>
+            </form>
+            <h3>{showMsg}</h3>
+            {data.map((item) => (
+              <Link
+                to={ `/album/${item.collectionId}` }
+                key={ item.collectionId }
+                data-testid={ `link-to-album-${item.collectionId}` }
+              >
+                <div>
+                  <img src={ item.artworkUrl100 } alt={ item.collectionName } />
+                  <h3>{item.collectionName}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </>
     );
   }
