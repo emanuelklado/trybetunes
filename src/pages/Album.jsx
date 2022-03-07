@@ -8,6 +8,7 @@ class Album extends Component {
     super();
     this.state = {
       listMusic: [],
+      imgAlbum: [],
       nomeArtist: [],
       nomeCollection: [],
 
@@ -20,10 +21,11 @@ class Album extends Component {
 
   handleShowMusic = async () => {
     const { params } = this.props.match;
-    console.log(params.id);
+    // console.log(params.id);
     const musicId = params.id;
     const requestMusics = await getMusics(musicId);
     this.setState({
+      imgAlbum: requestMusics[0].artworkUrl100,
       nomeArtist: requestMusics[0].artistName,
       nomeCollection: requestMusics[0].collectionName,
       listMusic: requestMusics,
@@ -31,12 +33,13 @@ class Album extends Component {
   }
 
   render() {
-    const { listMusic, nomeArtist, nomeCollection } = this.state;
+    const { imgAlbum, listMusic, nomeArtist, nomeCollection } = this.state;
     return (
       <>
         <Header />
         <div data-testid="page-album">
           <div>
+            <img src={ imgAlbum } alt={ nomeCollection } />
             <h4 data-testid="artist-name">{ nomeArtist }</h4>
             <p data-testid="album-name">{ nomeCollection }</p>
           </div>
