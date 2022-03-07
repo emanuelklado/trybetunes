@@ -53,14 +53,6 @@ class Search extends Component {
       });
     }
   }
-  // // rever essa função.
-  // showItems = () => {
-  //   const { data } = this.state;
-  //   console.log('chequei no map');
-  //   // data.map((item) => (
-
-  //   // ));
-  // }
 
   validation = () => {
     const MAX = 2;

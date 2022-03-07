@@ -19,6 +19,7 @@ class App extends React.Component {
       login: '',
       loading: false,
       isRedirect: false,
+      listMusic: [],
     };
 
     this.onInputChange = this.onInputChange.bind(this);
@@ -38,6 +39,9 @@ class App extends React.Component {
       isRedirect: true,
     });
   }
+  // handleListMusic = async() => {
+  //   const {listMusic} = this.state;
+  // }
 
   onInputChange({ target: { name, value, type, checked } }) {
     const valor = type === 'checkbox' ? checked : value;

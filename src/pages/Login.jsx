@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import './login-style.css';
 
 class Login extends Component {
   render() {
@@ -12,6 +13,11 @@ class Login extends Component {
 
     return (
       <div data-testid="page-login">
+        <section className="login-section-titles">
+          <h1> Login </h1>
+          <h4>Digite seu nome de usuário</h4>
+        </section>
+
         <form>
           <label htmlFor="login">
             <input
@@ -34,6 +40,7 @@ class Login extends Component {
           { isRedirect && <Redirect to="/search" /> }
         </form>
       </div>
+
     );
   }
 }

@@ -5,8 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(0deg, rgb(106, 11, 11), rgb(0, 0, 0));
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: wheat;
+  height: 100vh;
+
 }
 
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -18,6 +30,7 @@ code {
   justify-content: center;
 }
 
-.container-header {
+/* .container-header {
   background-color: greenyellow;
-}
+} */
+
