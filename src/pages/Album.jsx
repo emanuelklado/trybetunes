@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from './MusicCard';
+import './album-style.css';
 
 class Album extends Component {
   constructor() {
@@ -38,14 +39,17 @@ class Album extends Component {
       <>
         <Header />
         <div data-testid="page-album">
-          <div>
+          <div className="album-container">
             <img src={ imgAlbum } alt={ nomeCollection } />
             <h4 data-testid="artist-name">{ nomeArtist }</h4>
             <p data-testid="album-name">{ nomeCollection }</p>
           </div>
-          { listMusic.map((el, index) => (index !== 0
+          <div className="musics-container">
+            { listMusic.map((el, index) => (index !== 0
             && <MusicCard key={ index } propTrackName={ el } />
-          ))}
+            ))}
+          </div>
+
         </div>
       </>
     );

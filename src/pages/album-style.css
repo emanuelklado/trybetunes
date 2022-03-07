@@ -1,0 +1,24 @@
+/* body {
+  background-size: 100%;
+  back
+} */
+
+/* [ data-testid = 'page-album' ] {
+  display: flex;
+  flex-wrap: wrap;
+}
+ */
+
+.musics-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.album-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

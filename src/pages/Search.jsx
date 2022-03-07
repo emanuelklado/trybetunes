@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from './components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
+import './search-style.css';
 
 class Search extends Component {
   constructor() {
@@ -77,39 +78,43 @@ class Search extends Component {
           <Loading propLoading={ loading } />
         ) : (
           <div data-testid="page-search">
-            <p> Search </p>
-            <form>
-              <input
-                id="searchName"
-                value={ searchName }
-                name="searchName"
-                type="text"
-                data-testid="search-artist-input"
-                placeholder="Album ou Artista"
-                onChange={ this.onInputSearch }
-              />
-              <button
-                onClick={ (event) => this.handleClickSearch(event) }
-                disabled={ isDisabled }
-                data-testid="search-artist-button"
-                type="submit"
-              >
-                Pesquisar
-              </button>
-            </form>
-            <h3>{showMsg}</h3>
-            {data.map((item) => (
-              <Link
-                to={ `/album/${item.collectionId}` }
-                key={ item.collectionId }
-                data-testid={ `link-to-album-${item.collectionId}` }
-              >
-                <div>
-                  <img src={ item.artworkUrl100 } alt={ item.collectionName } />
-                  <h3>{item.collectionName}</h3>
-                </div>
-              </Link>
-            ))}
+            <section className="search-content">
+              <p> Search </p>
+              <form>
+                <input
+                  id="searchName"
+                  value={ searchName }
+                  name="searchName"
+                  type="text"
+                  data-testid="search-artist-input"
+                  placeholder="Album ou Artista"
+                  onChange={ this.onInputSearch }
+                />
+                <button
+                  onClick={ (event) => this.handleClickSearch(event) }
+                  disabled={ isDisabled }
+                  data-testid="search-artist-button"
+                  type="submit"
+                >
+                  Pesquisar
+                </button>
+              </form>
+              <h3>{showMsg}</h3>
+            </section>
+            <section className="albuns-container">
+              {data.map((item) => (
+                <Link
+                  to={ `/album/${item.collectionId}` }
+                  key={ item.collectionId }
+                  data-testid={ `link-to-album-${item.collectionId}` }
+                >
+                  <div className="card-album-container">
+                    <img src={ item.artworkUrl100 } alt={ item.collectionName } />
+                    <h3>{item.collectionName}</h3>
+                  </div>
+                </Link>
+              ))}
+            </section>
           </div>
         )}
       </>

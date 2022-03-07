@@ -1,0 +1,24 @@
+.albuns-container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-album-container img {
+  border: 2px solid green;
+  width: 150px;
+}
+
+.card-album-container {
+  align-items: baseline;
+  border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: center;
+
+  /* overflow: visible; */
+  width: 220px;
+
+}
