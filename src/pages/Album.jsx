@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from './components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from './MusicCard';
@@ -21,9 +22,9 @@ class Album extends Component {
   }
 
   handleShowMusic = async () => {
-    const { params } = this.props.match;
+    const { match } = this.props;
     // console.log(params.id);
-    const musicId = params.id;
+    const musicId = match.params.id;
     const requestMusics = await getMusics(musicId);
     this.setState({
       imgAlbum: requestMusics[0].artworkUrl100,
@@ -46,7 +47,11 @@ class Album extends Component {
           </div>
           <div className="musics-container">
             { listMusic.map((el, index) => (index !== 0
-            && <MusicCard key={ index } propTrackName={ el } />
+            && <MusicCard
+              key={ index }
+              propOnClick={ () => {} } // solução proposta por emerson alves, passar uma função vazia para implementar a 12 questão, porém não passa nos testes;
+              propTrackName={ el }
+            />
             ))}
           </div>
 
@@ -55,5 +60,9 @@ class Album extends Component {
     );
   }
 }
+
+Album.propTypes = {
+  params: PropTypes.string,
+}.isRequired;
 
 export default Album;

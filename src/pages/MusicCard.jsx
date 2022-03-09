@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
+import './musicCard-style.css';
 
 class MusicCard extends Component {
   constructor() {
@@ -38,27 +39,19 @@ class MusicCard extends Component {
   }
 
     handleAddFavoritesSongs = async (song) => {
-      this.setState({
-        loading: true,
-      });
+      this.setState({ loading: true });
       await addSong(song);
       console.log('entrei no ADD');
-      this.setState({
-        loading: false,
-        isChecked: true,
-      });
+      this.setState({ loading: false, isChecked: true });
     }
 
     handleRemoveFavoritesSongs = async (song) => {
-      this.setState({
-        loading: true,
-      });
+      const { propOnClick } = this.props;
+      this.setState({ loading: true });
       await removeSong(song);
+      propOnClick();
       console.log('entrei na remove');
-      this.setState({
-        loading: false,
-        isChecked: false,
-      });
+      this.setState({ loading: false, isChecked: false });
     }
 
     render() {
@@ -66,10 +59,11 @@ class MusicCard extends Component {
       const { loading, isChecked } = this.state;
       return (
 
-        <div>
-          { loading ? (<Loading propLoading={ loading } />) : (
+        <div className="cantainer-all-musics">
+
+          <div className="music-card-container">
             <div>
-              <p>{propTrackName.trackName}</p>
+
               <audio
                 data-testid="audio-component"
                 src={ propTrackName.previewUrl }
@@ -81,15 +75,22 @@ class MusicCard extends Component {
                 <code>audio</code>
                 .
               </audio>
-              {/* <label htmlFor="check"> */}
+            </div>
+
+            <div className="input-track-container">
+              <p>{propTrackName.trackName}</p>
               <input
+                // onClick={ propOnClick }
                 onChange={ this.handleCheckbox }
                 data-testid={ `checkbox-music-${propTrackName.trackId}` }
                 type="checkbox"
                 checked={ isChecked }
               />
-              {/* </label> */}
             </div>
+
+          </div>
+          {loading && (
+            <Loading propLoading={ loading } />
           )}
         </div>
       );
@@ -102,5 +103,6 @@ MusicCard.propTypes = {
     previewUrl: PropTypes.string,
     trackId: PropTypes.number,
   }).isRequired,
+  propOnClick: PropTypes.func.isRequired,
 };
 export default MusicCard;

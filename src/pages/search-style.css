@@ -6,19 +6,58 @@
 }
 
 .card-album-container img {
-  border: 2px solid green;
+  border: 1px solid wheat;
+  border-radius: 15px;
   width: 150px;
 }
 
 .card-album-container {
-  align-items: baseline;
-  border: 2px solid white;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  background-color: rgba(255, 255, 255, 0.02);
+  background-size: 100%;
+
+  /* border: 0.5px solid rgb(126, 124, 124); */
+  border-radius: 15px;
+  color: white;
   display: flex;
   flex-direction: column;
-  height: 250px;
-  justify-content: center;
-
-  /* overflow: visible; */
+  height: 260px;
+  justify-content: space-evenly;
+  margin: 10px;
+  padding-top: 20px;
   width: 220px;
+}
 
+.card-album-container:hover {
+  animation: gradient 1s ease infinite;
+  background: linear-gradient(-45deg, #571400, #36103d, #070b2b, rgb(102, 104, 12));
+  background-size: 200% 200%;
+  position: relative;
+  transform: scale3d(1.05, 1.05, 0.8);
+  transition: 600ms;
+}
+
+.search-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+@keyframes gradient {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }

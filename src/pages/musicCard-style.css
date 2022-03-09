@@ -1,0 +1,84 @@
+.cantainer-all-musics {
+  align-items: center;
+
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+
+  /* margin: 10px; */
+}
+
+.input-track-container {
+  align-items: center;
+
+  /* border: 2px solid pink; */
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.music-card-container {
+  align-items: center;
+  backdrop-filter: blur(9px);
+  background: rgba(255, 255, 255, 0.05);
+
+  /* border: 2px solid green; */
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column-reverse;
+  margin: 10px;
+  padding: 4px 25px;
+}
+
+
+.music-card-container:hover {
+  backdrop-filter: blur(9px);
+  background-color: rgba(20, 20, 20, 0.7);
+  cursor: pointer;
+  transform: scale3d(1.05, 1.05, 0.6);
+  transition: 600ms;
+
+}
+
+/* hearts inputs reference -- https://www.youtube.com/watch?v=jQuLIUZIG3k   */
+[ type = 'checkbox' ] {
+  appearance: none;
+  background-color: white;
+  height: 10px;
+  outline: none;
+  position: relative;
+  transform: rotate(45deg);
+  width: 10px;
+}
+
+[ type = 'checkbox' ]:before {
+  background-color: white;
+  border-radius: 75px 75px 0 0;
+  content: '';
+  height: 65%;
+  position: absolute;
+  top: -59%;
+  width: 100%;
+}
+
+[ type = 'checkbox' ]:after {
+  background-color: white;
+  border-radius: 75px 75px 0 0;
+  content: '';
+  height: 65%;
+  position: absolute;
+  right: 79%;
+  top: 20%;
+  transform: rotate(-90deg);
+  width: 100%;
+}
+
+[ type = 'checkbox' ]:checked, input:checked[ type = 'checkbox' ]:before, input:checked[ type = 'checkbox' ]:after {
+  background-color: crimson;
+}
+
+.loading-text {
+  font-size: small;
+  margin: 0;
+}

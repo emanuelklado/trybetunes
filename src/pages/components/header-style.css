@@ -1,13 +1,37 @@
 header {
+  border-bottom: 1px solid wheat;
 
   /* border: 3px solid red; */
   margin-top: 20px;
   text-align: center;
+  width: 100%;
 }
 
-a {
-  color: brown;
+.logo {
+  width: 13%;
+}
+
+.logo-login {
+  width: 20%;
+}
+
+header a {
+  color: rgb(1, 178, 242);
+  font-size: x-large;
   margin: 10px;
   text-align: center;
   text-decoration: none;
+}
+
+
+header a:hover {
+  color: wheat;
+}
+
+.loading-header-container {
+  align-items: center;
+
+  /* border: 2px solid green; */
+  display: flex;
+  justify-content: center;
 }

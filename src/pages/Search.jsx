@@ -110,7 +110,7 @@ class Search extends Component {
                 >
                   <div className="card-album-container">
                     <img src={ item.artworkUrl100 } alt={ item.collectionName } />
-                    <h3>{item.collectionName}</h3>
+                    <h4>{item.collectionName}</h4>
                   </div>
                 </Link>
               ))}
