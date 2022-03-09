@@ -74,9 +74,11 @@
   width: 100%;
 }
 
-[ type = 'checkbox' ]:checked, input:checked[ type = 'checkbox' ]:before, input:checked[ type = 'checkbox' ]:after {
+/* [ type = 'checkbox' ]:checked,
+input:checked[ type = 'checkbox' ]:before,
+input:checked[ type = 'checkbox' ]:after {
   background-color: crimson;
-}
+} */
 
 .loading-text {
   font-size: small;
