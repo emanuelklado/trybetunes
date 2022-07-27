@@ -56,9 +56,9 @@
   background-color: white;
   border-radius: 75px 75px 0 0;
   content: '';
-  height: 65%;
+  height: 70%;
   position: absolute;
-  top: -59%;
+  top: -60%;
   width: 100%;
 }
 
@@ -66,19 +66,17 @@
   background-color: white;
   border-radius: 75px 75px 0 0;
   content: '';
-  height: 65%;
+  height: 70%;
   position: absolute;
   right: 79%;
-  top: 20%;
+  top: 16%;
   transform: rotate(-90deg);
   width: 100%;
 }
 
-/* [ type = 'checkbox' ]:checked,
-input:checked[ type = 'checkbox' ]:before,
-input:checked[ type = 'checkbox' ]:after {
+[ type = 'checkbox' ]:checked, input:checked[ type = 'checkbox' ]:before, input:checked[ type = 'checkbox' ]:after {
   background-color: crimson;
-} */
+}
 
 .loading-text {
   font-size: small;
